@@ -57,4 +57,4 @@ from .transformers import (
     URLFeaturizer,
     DropRowsTransformer,
 )
-from .ensemble import SklearnStackedEnsembleClassifier, SklearnStackedEnsembleRegressor
+from .ensemble import SklearnStackedEnsembleClassifier, SklearnStackedEnsembleRegressor, StackedEnsembleClassifier, StackedEnsembleRegressor

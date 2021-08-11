@@ -1,3 +1,5 @@
+from evalml.problem_types.problem_types import ProblemTypes
+from evalml.problem_types.utils import detect_problem_type
 import inspect
 import warnings
 
@@ -183,7 +185,7 @@ class ComponentGraph:
         """
         X = infer_feature_types(X)
         y = infer_feature_types(y)
-        self._compute_features(self.compute_order, X, y, fit=True)
+        self._compute_features(self.compute_order, X, y, fit=True, use_proba=True)
         self._feature_provenance = self._get_feature_provenance(X.columns)
         return self
 
@@ -228,7 +230,7 @@ class ComponentGraph:
             self.input_feature_names.update({self.compute_order[0]: list(X.columns)})
             return X
         component_outputs = self._compute_features(
-            self.compute_order[:-1], X, y=y, fit=needs_fitting
+            self.compute_order[:-1], X, y=y, fit=needs_fitting, use_proba=True
         )
         x_inputs, _ = self._consolidate_inputs_for_component(
             component_outputs, self.compute_order[-1], X, y
@@ -305,7 +307,7 @@ class ComponentGraph:
         outputs = self._compute_features(self.compute_order, X)
         return infer_feature_types(outputs.get(f"{final_component}.x"))
 
-    def _compute_features(self, component_list, X, y=None, fit=False):
+    def _compute_features(self, component_list, X, y=None, fit=False, use_proba=True):
         """Transforms the data by applying the given components.
 
         Arguments:
@@ -313,6 +315,8 @@ class ComponentGraph:
             X (pd.DataFrame): Input data to the pipeline to transform.
             y (pd.Series): The target training data of length [n_samples].
             fit (boolean): Whether to fit the estimators as well as transform it.
+                        Defaults to False.
+            use_proba (bool): If true, caches prediction probabilities rather than predictions. 
                         Defaults to False.
 
         Returns:
@@ -354,6 +358,7 @@ class ComponentGraph:
             else:
                 if fit:
                     component_instance.fit(x_inputs, y_input)
+
                 if fit and component_name == self.compute_order[-1]:
                     # Don't call predict on the final component during fit
                     output = None

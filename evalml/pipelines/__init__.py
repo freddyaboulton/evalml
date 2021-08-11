@@ -25,6 +25,8 @@ from .components import (
     ExtraTreesRegressor,
     DecisionTreeClassifier,
     DecisionTreeRegressor,
+    StackedEnsembleClassifier,
+    StackedEnsembleRegressor,
     SklearnStackedEnsembleClassifier,
     SklearnStackedEnsembleRegressor,
     DelayedFeatureTransformer,
