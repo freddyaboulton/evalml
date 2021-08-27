@@ -213,7 +213,10 @@ def test_evalml_algo_pipeline_params(mock_get_names, X_y_binary):
         batch = algo.next_batch()
         add_result(algo, batch)
         for pipeline in batch:
-            if not isinstance(pipeline.estimator, SklearnStackedEnsembleClassifier):
+            if not isinstance(
+                pipeline.estimator,
+                (SklearnStackedEnsembleClassifier, StackedEnsembleClassifier),
+            ):
                 assert pipeline.parameters["pipeline"] == {"gap": 2, "max_delay": 10}
             if isinstance(pipeline.estimator, LogisticRegressionClassifier):
                 assert pipeline.parameters["Logistic Regression Classifier"]["C"] == 5

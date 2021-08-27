@@ -1,5 +1,5 @@
 from evalml.model_family import ModelFamily
-from evalml.pipelines.components import LinearRegressor
+from evalml.pipelines.components import ElasticNetRegressor
 from evalml.pipelines.components.ensemble import StackedEnsembleBase
 from evalml.problem_types import ProblemTypes
 
@@ -39,4 +39,4 @@ class StackedEnsembleRegressor(StackedEnsembleBase):
     ]"""
     hyperparameter_ranges = {}
     """{}"""
-    _default_final_estimator = LinearRegressor
+    _default_final_estimator = ElasticNetRegressor
