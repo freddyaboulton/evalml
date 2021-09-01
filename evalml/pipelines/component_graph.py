@@ -12,7 +12,6 @@ from evalml.exceptions.exceptions import (
     MissingComponentError,
     ParameterNotUsedWarning,
 )
-from evalml.model_family.model_family import ModelFamily
 from evalml.pipelines.components import ComponentBase, Estimator, Transformer
 from evalml.pipelines.components.transformers.samplers.base_sampler import (
     BaseSampler,
