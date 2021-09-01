@@ -13,11 +13,7 @@ from evalml.pipelines.components import (
     RandomForestClassifier,
     SklearnStackedEnsembleClassifier,
     SklearnStackedEnsembleRegressor,
-)
-from evalml.pipelines.components.ensemble.stacked_ensemble_classifier import (
     StackedEnsembleClassifier,
-)
-from evalml.pipelines.components.ensemble.stacked_ensemble_regressor import (
     StackedEnsembleRegressor,
 )
 from evalml.problem_types import ProblemTypes
