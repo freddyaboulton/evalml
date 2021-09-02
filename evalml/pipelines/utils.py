@@ -289,6 +289,7 @@ def _make_stacked_ensemble_pipeline(
             parameters = {
                 "Sklearn Stacked Ensemble Classifier": {
                     "input_pipelines": input_pipelines,
+                    "final_estimator": final_estimator,
                     "n_jobs": n_jobs,
                 }
             }
@@ -305,6 +306,7 @@ def _make_stacked_ensemble_pipeline(
             parameters = {
                 "Sklearn Stacked Ensemble Regressor": {
                     "input_pipelines": input_pipelines,
+                    "final_estimator": final_estimator,
                     "n_jobs": n_jobs,
                 }
             }
@@ -376,7 +378,6 @@ def _make_stacked_ensemble_pipeline(
     return pipeline_class(
         [estimator] if use_sklearn else component_graph,
         parameters=parameters,
-        final_estimator=final_estimator,
         custom_name=pipeline_name,
         random_seed=random_seed,
     )
