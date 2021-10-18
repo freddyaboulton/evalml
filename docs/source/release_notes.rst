@@ -3,6 +3,7 @@ Release Notes
 **Future Releases**
     * Enhancements
     * Fixes
+        * Fixed bug where partial dependence was not respecting the ww schema :pr:`2929`
     * Changes
     * Documentation Changes
     * Testing Changes
